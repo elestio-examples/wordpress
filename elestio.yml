@@ -1,0 +1,28 @@
+ports:
+  - protocol: "HTTPS"
+    targetProtocol: "HTTP"
+    listeningPort: "443"
+    targetPort: "9000"
+    public: true
+    path: "/"
+    isAuth: false
+    login: ""
+    password: ""
+  - protocol: "HTTPS"
+    targetProtocol: "HTTP"
+    listeningPort: "24580"
+    targetPort: "24581"
+    public: true
+    path: "/"
+    isAuth: true
+    login: "root"
+    password: "random_password"
+environments:
+  - key: "SOFTWARE_VERSION_TAG"
+    value: "latest"
+  - key: "MYSQL_ROOT_PASSWORD"
+    value: "random_password"
+  - key: "MYSQL_USER"
+    value: "wpdbuser"
+  - key: "MYSQL_PASSWORD"
+    value: "random_password"
