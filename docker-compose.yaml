@@ -2,7 +2,6 @@ version: '3.3'
 services:
   database:
     image: mysql:latest
-    container_name: database
     volumes:
       - ./db:/var/lib/mysql
     restart: always
@@ -21,7 +20,6 @@ services:
     depends_on:
       - database
     image: wordpress:${SOFTWARE_VERSION_TAG}
-    container_name: wordpress
     restart: always
     user: "root:root"
     ports:
@@ -43,7 +41,6 @@ services:
     restart: always
     depends_on:
       - database
-    container_name: phpmyadmin
     environment:
       - PMA_HOST=database
       - PMA_PORT=3306
