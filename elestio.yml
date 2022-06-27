@@ -3,6 +3,7 @@ ports:
     targetProtocol: "HTTP"
     listeningPort: "443"
     targetPort: "9000"
+    targetIP: "172.17.0.1"
     public: true
     path: "/"
     isAuth: false
@@ -12,6 +13,7 @@ ports:
     targetProtocol: "HTTP"
     listeningPort: "24580"
     targetPort: "24581"
+    targetIP: "172.17.0.1"
     public: true
     path: "/"
     isAuth: true
@@ -26,3 +28,10 @@ environments:
     value: "wpdbuser"
   - key: "MYSQL_PASSWORD"
     value: "random_password"
+config:
+  runTime: "dockerCompose"
+  version: ""
+  framework: ""
+  buildCommand: "docker-compose build"
+  buildDir: "/"
+  runCommand: "docker-compose up -d"
