@@ -5,7 +5,8 @@ echo "Waiting for WP to be ready ...";
 sleep 20s;
 
 #Create default user
-curl 'http://172.17.0.1:9000/wp-admin/install.php?step=2' \
+wp_target=$(docker-compose port wordpress 9000)
+curl http://$wp_target/wp-admin/install.php?step=2 \
   -H 'content-type: application/x-www-form-urlencoded' \
   -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36' \
   -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8' \
