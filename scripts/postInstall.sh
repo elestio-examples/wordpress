@@ -1,7 +1,7 @@
 #set env vars
 set -o allexport; source .env; set +o allexport;
 
-sleep 10s;
+sleep 20s;
 
 #Create default user
 curl 'http://172.17.0.1:9000/wp-admin/install.php?step=2' \
@@ -23,10 +23,10 @@ cat << EOF > /opt/app/installWP-CLI.sh
 docker exec wordpress bash -c "cd /tmp/ && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp;"
 
 #install plugins
-docker exec wordpress bash -c "wp plugin install wp-super-cache --activate --allow-root --path='/var/www/html'"
-docker exec wordpress bash -c "wp plugin install wordpress-seo --activate --allow-root --path='/var/www/html'"
-#docker exec wordpress bash -c "wp plugin install elementor --activate --allow-root --path='/var/www/html'"
-docker exec wordpress bash -c "wp plugin install contact-form-7 --activate --allow-root --path='/var/www/html'"
+docker-compose exec -T wordpress bash -c "wp plugin install wp-super-cache --activate --allow-root --path='/var/www/html'"
+docker-compose exec -T wordpress bash -c "wp plugin install wordpress-seo --activate --allow-root --path='/var/www/html'"
+#docker-compose exec -T wordpress bash -c "wp plugin install elementor --activate --allow-root --path='/var/www/html'"
+docker-compose exec -T wordpress bash -c "wp plugin install contact-form-7 --activate --allow-root --path='/var/www/html'"
 
 #set permissions
 sudo chown -R www-data:www-data /opt/app/wordpress;
