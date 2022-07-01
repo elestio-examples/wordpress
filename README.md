@@ -11,11 +11,11 @@ Example application and CI/CD pipeline showing how to deploy a WORDPRESS + MySQL
 You can can open Wordpress admin panel here:
 
     https://[CI_CD_DOMAIN]/wp-admin
-    Login: [EMAIL] (set in env var)
-    password: [SOFTWARE_PASSWORD] (set in env var)
+    Login: [ADMIN_EMAIL] (set in env var)
+    password: [ADMIN_PASSWORD] (set in env var)
 
 You can connect to your DB through PHPMyAdmin:
 
-    https://[DOMAIN]:24580/
+    https://[CI_CD_DOMAIN]:24580/
     Login: root (set in reverse proxy configuration)
     Password: [ADMIN_PASSWORD] (set in reverse proxy configuration)
