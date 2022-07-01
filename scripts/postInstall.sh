@@ -1,6 +1,7 @@
 #set env vars
 set -o allexport; source .env; set +o allexport;
 
+echo "Waiting for WP to be ready ...";
 sleep 20s;
 
 #Create default user
@@ -18,9 +19,9 @@ define("WP_HOME", "https://" . $_SERVER["HTTP_HOST"]);' ./wordpress/wp-config.ph
 
 
 #install wp-cli + plugins
-cat << EOF > /opt/app/installWP-CLI.sh
+cat << EOF > ./installWP-CLI.sh
 #install wp-cli
-docker exec wordpress bash -c "cd /tmp/ && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp;"
+docker-compose exec -T wordpress bash -c "cd /tmp/ && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp;"
 
 #install plugins
 docker-compose exec -T wordpress bash -c "wp plugin install wp-super-cache --activate --allow-root --path='/var/www/html'"
@@ -29,10 +30,11 @@ docker-compose exec -T wordpress bash -c "wp plugin install wordpress-seo --acti
 docker-compose exec -T wordpress bash -c "wp plugin install contact-form-7 --activate --allow-root --path='/var/www/html'"
 
 #set permissions
-sudo chown -R www-data:www-data /opt/app/wordpress;
+sudo chown -R www-data:www-data ./wordpress;
 
 EOF
-chmod +x /opt/app/installWP-CLI.sh;
+chmod +x ./installWP-CLI.sh;
 
 #install now wp-cli and plugins: 
-/opt/app/installWP-CLI.sh;
+echo "Installing WP CLI & default plugins ...";
+./installWP-CLI.sh;
