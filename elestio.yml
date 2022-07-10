@@ -53,5 +53,3 @@ webUI:
     label: "Wordpress Admin"
     login: "[ADMIN_EMAIL]"
     password: "[ADMIN_PASSWORD]"
-  - url: "https://[CI_CD_DOMAIN]"
-    label: "Website"  
