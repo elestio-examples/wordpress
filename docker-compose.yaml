@@ -52,8 +52,6 @@ services:
       - 172.17.0.1:24581:80
     networks:
       - blog-network
-    depends_on:
-      - database
 networks:
   blog-network:
     driver: bridge
