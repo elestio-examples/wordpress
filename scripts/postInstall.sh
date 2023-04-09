@@ -18,6 +18,13 @@ sed -i '/define(/i \
 define("WP_SITEURL", "https://" . $_SERVER["HTTP_HOST"]);\
 define("WP_HOME", "https://" . $_SERVER["HTTP_HOST"]);' ./wordpress/wp-config.php
 
+sed -i "s~/\* That's all, stop editing! Happy publishing. \*/~define('WP_REDIS_HOST', '172.17.0.1');\\
+define('WP_REDIS_PORT', '6379');\\
+define( 'WP_REDIS_DISABLED', false );\\
+\\
+/\* That's all, stop editing! Happy publishing. \*/ \\
+~g" ./wordpress/wp-config.php
+
 
 #install wp-cli + plugins
 cat << EOF > ./installWP-CLI.sh
@@ -29,6 +36,7 @@ docker-compose exec -T wordpress bash -c "wp plugin install wp-super-cache --act
 docker-compose exec -T wordpress bash -c "wp plugin install wordpress-seo --activate --allow-root --path='/var/www/html'"
 #docker-compose exec -T wordpress bash -c "wp plugin install elementor --activate --allow-root --path='/var/www/html'"
 docker-compose exec -T wordpress bash -c "wp plugin install contact-form-7 --activate --allow-root --path='/var/www/html'"
+docker-compose exec -T wordpress bash -c "wp plugin install redis-cache --activate --allow-root --path='/var/www/html'"
 
 #set permissions
 sudo chown -R www-data:www-data ./wordpress;
