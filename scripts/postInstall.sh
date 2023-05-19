@@ -2,7 +2,7 @@
 set -o allexport; source .env; set +o allexport;
 
 echo "Waiting for WP to be ready ...";
-sleep 20s;
+sleep 180s;
 
 #Create default user
 wp_target=$(docker-compose port wordpress 80)
