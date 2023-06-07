@@ -44,7 +44,7 @@ services:
     networks:
       - blog-network
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin
     restart: always
     depends_on:
       - database
