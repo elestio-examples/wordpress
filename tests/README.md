@@ -60,65 +60,65 @@ Here are some example snippets to help you get started creating a container.
 
     version: '3.3'
     services:
-    redis:
-        image: 'redis:alpine'
-        ports:
-            - '172.17.0.1:6379:6379'
-        restart: always
-        volumes:
-        - ./redis_data:/data
-    database:
-        image: mysql:latest
-        volumes:
-            - ./db:/var/lib/mysql
-        restart: always
-        env_file:
-            - .env
-        environment:
-            MYSQL_DATABASE: blog_wp
-        command: '--default-authentication-plugin=mysql_native_password'
-        cap_add:
-            - SYS_NICE  # CAP_SYS_NICE
-        networks:
-            - blog-network
-    wordpress:
-        depends_on:
-            - database
-        image: wordpress:${SOFTWARE_VERSION_TAG}
-        restart: always
-        user: "root:root"
-        dns: 
-            - 8.8.8.8
-        ports:
-            - 172.17.0.1:9000:80
-        env_file:
-            - .env
-        environment:
-            - WORDPRESS_DB_HOST=database:3306
-            - WORDPRESS_DB_USER=${MYSQL_USER}
-            - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
-            - WORDPRESS_DB_NAME=blog_wp
-        volumes:
-            - ./php.ini:/usr/local/etc/php/conf.d/custom.ini
-            - ./wordpress:/var/www/html
-        networks:
-            - blog-network
-    phpmyadmin:
-        image: phpmyadmin
-        restart: always
-        depends_on:
-            - database
-        environment:
-            - PMA_HOST=database
-            - PMA_PORT=3306
-            - PMA_USER=wpdbuser
-            - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
-            - MYSQL_USERNAME=wpdbuser
-            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-        ports:
-            - 172.17.0.1:24581:80
-        networks:
-            - blog-network
+      redis:
+          image: 'redis:alpine'
+          ports:
+              - '172.17.0.1:6379:6379'
+          restart: always
+          volumes:
+          - ./redis_data:/data
+      database:
+          image: mysql:latest
+          volumes:
+              - ./db:/var/lib/mysql
+          restart: always
+          env_file:
+              - .env
+          environment:
+              MYSQL_DATABASE: blog_wp
+          command: '--default-authentication-plugin=mysql_native_password'
+          cap_add:
+              - SYS_NICE  # CAP_SYS_NICE
+          networks:
+              - blog-network
+      wordpress:
+          depends_on:
+              - database
+          image: wordpress:${SOFTWARE_VERSION_TAG}
+          restart: always
+          user: "root:root"
+          dns: 
+              - 8.8.8.8
+          ports:
+              - 172.17.0.1:9000:80
+          env_file:
+              - .env
+          environment:
+              - WORDPRESS_DB_HOST=database:3306
+              - WORDPRESS_DB_USER=${MYSQL_USER}
+              - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
+              - WORDPRESS_DB_NAME=blog_wp
+          volumes:
+              - ./php.ini:/usr/local/etc/php/conf.d/custom.ini
+              - ./wordpress:/var/www/html
+          networks:
+              - blog-network
+      phpmyadmin:
+          image: phpmyadmin
+          restart: always
+          depends_on:
+              - database
+          environment:
+              - PMA_HOST=database
+              - PMA_PORT=3306
+              - PMA_USER=wpdbuser
+              - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
+              - MYSQL_USERNAME=wpdbuser
+              - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+          ports:
+              - 172.17.0.1:24581:80
+          networks:
+              - blog-network
     networks:
         blog-network:
             driver: bridge
