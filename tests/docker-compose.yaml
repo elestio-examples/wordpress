@@ -24,7 +24,7 @@ services:
   wordpress:
     depends_on:
       - database
-    image: wordpress:${SOFTWARE_VERSION_TAG}
+    image: elestio4test/wordpress:${SOFTWARE_VERSION_TAG}
     restart: always
     user: "root:root"
     dns: 
