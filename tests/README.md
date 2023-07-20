@@ -68,7 +68,7 @@ Here are some example snippets to help you get started creating a container.
           volumes:
           - ./redis_data:/data
       database:
-          image: mysql:latest
+          image: elestio/mysql:latest
           volumes:
               - ./db:/var/lib/mysql
           restart: always
@@ -87,7 +87,7 @@ Here are some example snippets to help you get started creating a container.
           image: wordpress:${SOFTWARE_VERSION_TAG}
           restart: always
           user: "root:root"
-          dns: 
+          dns:
               - 8.8.8.8
           ports:
               - 172.17.0.1:9000:80
@@ -122,8 +122,6 @@ Here are some example snippets to help you get started creating a container.
     networks:
         blog-network:
             driver: bridge
-
-
 
 # Maintenance
 
