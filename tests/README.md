@@ -12,6 +12,8 @@
 
 Deploy a <a target="_blank" href="https://elest.io/open-source/wordpress">fully managed wordpress</a> on <a target="_blank" href="https://elest.io/">elest.io</a> if you want automated backups, reverse proxy with SSL termination, firewall, automated OS & Software updates, and a team of Linux experts and open source enthusiasts to ensure your services are always safe, and functional.
 
+<img src="https://github.com/elestio-examples/wordpress/raw/main/wordpress.png" alt="wordpress" width="800">
+
 [![deploy](https://github.com/elestio-examples/wordpress/raw/main/deploy-on-elestio.png)](https://dash.elest.io/deploy?source=cicd&social=dockerCompose&url=https://github.com/elestio-examples/wordpress)
 
 # Why use Elestio images?

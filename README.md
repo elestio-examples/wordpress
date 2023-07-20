@@ -4,6 +4,10 @@
 
 Example application and CI/CD pipeline showing how to deploy a WORDPRESS + MySQL + PhpMyAdmin docker compose to elestio.
 
+<img src="wordpress.png" style='width: 100%;'/>
+<br/>
+<br/>
+
 # Once deployed ...
 
 You can can open Wordpress admin panel here:
