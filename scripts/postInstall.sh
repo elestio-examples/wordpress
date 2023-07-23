@@ -2,7 +2,7 @@
 set -o allexport; source .env; set +o allexport;
 
 echo "Waiting for WP to be ready ...";
-sleep 180s;
+# sleep 180s;
 
 #Create default user
 wp_target=$(docker-compose port wordpress 80)
@@ -13,16 +13,12 @@ curl http://$wp_target/wp-admin/install.php?step=2 \
   --data-raw 'weblog_title=Wordpress&user_name='"$ADMIN_EMAIL"'&admin_password='"$ADMIN_PASSWORD"'&admin_password2='"$ADMIN_PASSWORD"'&admin_email='"$ADMIN_EMAIL"'&Submit=Install+WordPress&language=' \
   --compressed;
 
-#fix wp-config to allow multi domains
-sed -i '/define(/i \
-define("WP_SITEURL", "https://" . $_SERVER["HTTP_HOST"]);\
-define("WP_HOME", "https://" . $_SERVER["HTTP_HOST"]);' ./wordpress/wp-config.php
-
 sed -i "s~/\* That's all, stop editing! Happy publishing. \*/~define('WP_REDIS_HOST', '172.17.0.1');\\
 define('WP_REDIS_PORT', '6379');\\
 define( 'WP_REDIS_DISABLED', false );\\
 \\
-/\* That's all, stop editing! Happy publishing. \*/ \\
+define('WP_SITEURL', 'https://' . \$_SERVER['HTTP_HOST']);\\
+define('WP_HOME', 'https://' . \$_SERVER['HTTP_HOST']);\\
 ~g" ./wordpress/wp-config.php
 
 
