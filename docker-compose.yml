@@ -55,6 +55,7 @@ services:
       - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_USERNAME=wpdbuser
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - UPLOAD_LIMIT=500M
     ports:
       - 172.17.0.1:24581:80
     networks:
