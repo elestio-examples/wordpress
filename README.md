@@ -44,7 +44,7 @@ The Redis Object Cache plugin comes with a vast set of configuration options.
 
 | Configuration constant               | Default     | Description                                   |
 | ------------------------------------ | ----------- | --------------------------------------------- |
-| `WP_REDIS_HOST`                      | `127.0.0.1` | The hostname of the Redis server |
+| `WP_REDIS_HOST`                      | `172.17.0.1` | The hostname of the Redis server |
 | `WP_REDIS_PORT`                      | `6379`      | The port of the Redis server |
 | `WP_REDIS_PATH`                      |             | The path to the unix socket of the Redis server |
 | `WP_REDIS_SCHEME`                    | `tcp`       | The scheme used to connect: `tcp` or `unix` |
