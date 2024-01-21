@@ -1,14 +1,14 @@
 version: "3.3"
 services:
   redis:
-    image: "redis:alpine"
+    image: "elestio/redis:7.0"
     ports:
       - "172.17.0.1:6379:6379"
     restart: always
     volumes:
       - ./redis_data:/data
   database:
-    image: elestio/mysql:latest
+    image: elestio/mysql:8.0
     volumes:
       - ./db:/var/lib/mysql
     restart: always
@@ -44,7 +44,7 @@ services:
     networks:
       - blog-network
   phpmyadmin:
-    image: phpmyadmin
+    image: elestio/phpmyadmin
     restart: always
     depends_on:
       - database
